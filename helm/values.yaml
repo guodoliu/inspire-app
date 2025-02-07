@@ -1,0 +1,4 @@
+image:
+  repository: inf-repo-registry.cn-wulanchabu.cr.aliyuncs.com/infly-dev/inspire-app
+  pullPolicy: IfNotPresent
+  tag: "0.0.2"

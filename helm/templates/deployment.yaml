@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inspire-app
+  labels:
+    app: inspire-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inspire-app
+  template:
+    metadata:
+      labels:
+        app: inspire-app
+    spec:
+      containers:
+        - name: inspection-controller
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              httpGet:
+                port: 8080
+                path: /pre-stop
+                scheme: HTTP
+      terminationGracePeriodSeconds: 15
